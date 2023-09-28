@@ -58,3 +58,72 @@ routes/: Defines API routes and their associated controller methods.
 config/: Contains database configuration and other project configurations.
 
 index.js: The main entry point of the application.
+
+`How to call API`
+
+1)ticket booking
+
+post request -> http://localhost:5000/api/bookings/createbookings
+
+sending request data using json ->
+{
+"bookings": [
+{
+"customer_name": "John Doe",
+"seat_number": 5,
+"bus_id":"2558512f-cad5-47c2-98a2-78902e7570a3"
+},{
+"customer_name": "John Doe",
+"seat_number": 6,
+"bus_id":"2558512f-cad5-47c2-98a2-78902e7570a3"
+}
+]
+}
+
+2)ticket fetching
+
+GET request -> http://localhost:5000/api/bookings/getbookings?booking_date=2023-10-01
+
+available options to get
+->customer_name
+->seat_number
+->booking_date
+
+3. bus route create
+
+post request -> http://localhost:5000/api/busroutes/createbusroutes
+
+sendin request data using json ->
+{
+"provider_id":"139866d5-8335-4a2c-b94f-f96b119c431e",
+"source_city": "Bangalore",
+"destination_city": "Hubli",
+"date_of_journey": "2023-10-16",
+"departure_time": "08:00:00",
+"arrival_time": "14:00:00",
+"fare": 500.00,
+"seats_available": 50
+}
+
+4. bus route fetching
+
+GET request -> http://localhost:5000/api/busroutes/getbusroutes?source_city=Bangalore&destination_city=Hubli&date_of_journey=2023-10-15
+
+5. providers creating (redbus,abbibus)
+
+POST request -> http://localhost:5000/api/providers/createproviders
+
+sending REquestion using json ->
+{
+"name":"abbibus"  
+}
+
+6. fetching avaiable providers
+
+GET request http://localhost:5000/api/providers/getproviders
+
+7. cancel booking
+
+POST request -> http://localhost:5000/api/bookings/8e3777fe-8413-4ecb-9814-55d674b4b06a/cancel
+
+where 8e3777fe-8413-4ecb-9814-55d674b4b06a is the id of the booking
