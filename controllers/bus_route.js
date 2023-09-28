@@ -1,4 +1,5 @@
 const BusRoute = require("../models/bus_route");
+const sequelize = require("../config/db");
 
 // Create a new bus route
 exports.createBusRoute = async (req, res) => {
@@ -63,15 +64,17 @@ exports.getBusRoutes = async (req, res) => {
         source_city,
         destination_city,
       };
-
-      // If date_of_journey is provided, add it to the condition
-      if (date_of_journey) {
-        condition.date_of_journey = date_of_journey;
-      }
     } else {
       return res.status(400).json({
         error: "Source_city and destination_city are mandatory parameters",
       });
+    }
+
+    // If date_of_journey is provided, add it to the condition
+    if (date_of_journey) {
+      condition.date_of_journey = sequelize.literal(
+        `DATE(date_of_journey) = '${date_of_journey}'`
+      );
     }
 
     const busRoutes = await BusRoute.findAll({
