@@ -29,7 +29,7 @@ Follow these steps to get started with the Bus Ticket Booking Platform:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/bus-ticket-booking-platform.git
+   git clone https://github.com/jashwanth9845/bus_platform.git
 
    ```
 
